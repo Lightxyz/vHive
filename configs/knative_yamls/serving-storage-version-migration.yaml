@@ -42,7 +42,7 @@ spec:
         - name: migrate
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/migrate-242d0a35bf580c5b411a545d79618fbf@sha256:bd5aa7bdfefefd912814ccb3b94810369b272eed38e31399fc1f8c4b459f4508
+          image: docker.io/lightxyz/migrate-242d0a35bf580c5b411a545d79618fbf@sha256:3c0390bf71e27baaaebf7863951118823b1fd92f2b7a22f9d98ecfbb574477cd
           args:
             - "services.serving.knative.dev"
             - "configurations.serving.knative.dev"
