@@ -45,15 +45,11 @@ containerd --version || echo "failed to build containerd"
 
 
 # Install k8s
-K8S_VERSION=1.23.5
+K8S_VERSION=1.23.5-00
+curl --silent --show-error https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+sudo sh -c "echo 'deb http://apt.kubernetes.io/ kubernetes-xenial main' > /etc/apt/sources.list.d/kubernetes.list"
 sudo apt-get update >> /dev/null
-wget https://storage.googleapis.com/kubernetes-release/release/v$K8S_VERSION/bin/linux/amd64/kubeadm
-wget https://storage.googleapis.com/kubernetes-release/release/v$K8S_VERSION/bin/linux/amd64/kubectl
-wget https://storage.googleapis.com/kubernetes-release/release/v$K8S_VERSION/bin/linux/amd64/kubelet
-
-sudo install -o root -g root -m 0755 kubeadm /usr/local/bin/kubeadm
-sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-sudo install -o root -g root -m 0755 kubelet /usr/local/bin/kubelet
+sudo apt-get -y install cri-tools ebtables ethtool kubeadm=$K8S_VERSION kubectl=$K8S_VERSION kubelet=$K8S_VERSION kubernetes-cni >> /dev/null
 
 # Install knative CLI
 KNATIVE_VERSION="release-1.3"
