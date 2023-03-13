@@ -1,6 +1,6 @@
 
 ---
-# /tmp/tmp.mOTP1VAs2I/serving-storage-version-migration.yaml
+# /tmp/tmp.w89BpqEPRP/serving-storage-version-migration.yaml
 # Copyright 2020 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -45,7 +45,7 @@ spec:
         - name: migrate
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/migrate-242d0a35bf580c5b411a545d79618fbf@sha256:b9ba0d038e5e0834d306dfc844071520c7fe33afee16e9f08384349f428c1eb9
+          image: docker.io/lightxyz/migrate-242d0a35bf580c5b411a545d79618fbf@sha256:3f308b120f609077df2bcd655f2f655291fcf0c9ff45351782ffd64845befa6c
           args:
             - "services.serving.knative.dev"
             - "configurations.serving.knative.dev"
