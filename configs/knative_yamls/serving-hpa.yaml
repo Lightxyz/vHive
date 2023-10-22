@@ -22,6 +22,7 @@ metadata:
     app.kubernetes.io/component: autoscaler-hpa
     app.kubernetes.io/name: knative-serving
     app.kubernetes.io/version: devel
+    serving.knative.dev/release: devel
 spec:
   selector:
     matchLabels:
@@ -35,6 +36,7 @@ spec:
         app.kubernetes.io/component: autoscaler-hpa
         app.kubernetes.io/name: knative-serving
         app.kubernetes.io/version: devel
+        serving.knative.dev/release: devel
     spec:
       # To avoid node becoming SPOF, spread our replicas to different nodes.
       affinity:
@@ -51,7 +53,7 @@ spec:
         - name: autoscaler-hpa
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/autoscaler-hpa-85c0b68178743d74ff7f663a72802ceb@sha256:111e82639cf9eb03a377822b52fc0299fcdc0ae3c95585f8a72ce814cecce742
+          image: docker.io/lightxyz/autoscaler-hpa-85c0b68178743d74ff7f663a72802ceb@sha256:0612a0b56ba12cb52b027f84bd573df8296014e02fb9f1f5abf98be44ef09cb6
           resources:
             requests:
               cpu: 30m
@@ -77,9 +79,7 @@ spec:
             runAsNonRoot: true
             capabilities:
               drop:
-                - ALL
-            seccompProfile:
-              type: RuntimeDefault
+                - all
           ports:
             - name: metrics
               containerPort: 9090
@@ -95,6 +95,7 @@ metadata:
     app.kubernetes.io/component: autoscaler-hpa
     app.kubernetes.io/name: knative-serving
     app.kubernetes.io/version: devel
+    serving.knative.dev/release: devel
   name: autoscaler-hpa
   namespace: knative-serving
 spec:

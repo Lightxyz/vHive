@@ -1,6 +1,6 @@
 
 ---
-# /tmp/tmp.0lpOUXbDb0/serving-storage-version-migration.yaml
+# /tmp/tmp.oQU9w08QZx/serving-storage-version-migration.yaml
 # Copyright 2020 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,6 +25,7 @@ metadata:
     app.kubernetes.io/name: knative-serving
     app.kubernetes.io/component: storage-version-migration-job
     app.kubernetes.io/version: devel
+    serving.knative.dev/release: devel
 spec:
   ttlSecondsAfterFinished: 600
   backoffLimit: 10
@@ -44,7 +45,7 @@ spec:
         - name: migrate
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/migrate-242d0a35bf580c5b411a545d79618fbf@sha256:fda034e9b109379b5dc93cb5be71a8b18974a941caf84832113749bc4b5a7e98
+          image: docker.io/lightxyz/migrate-242d0a35bf580c5b411a545d79618fbf@sha256:eb27f902e38de15d24e8d1fb3e41c310d6f7e932a5a158329d2238dda83a0dfe
           args:
             - "services.serving.knative.dev"
             - "configurations.serving.knative.dev"
@@ -61,10 +62,5 @@ spec:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
             runAsNonRoot: true
-            capabilities:
-              drop:
-                - ALL
-            seccompProfile:
-              type: RuntimeDefault
 
 ---
