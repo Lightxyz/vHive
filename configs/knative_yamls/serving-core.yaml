@@ -3549,7 +3549,7 @@ metadata:
 spec:
   # This is the Go import path for the binary that is containerized
   # and substituted here.
-  image: docker.io/vhiveease/queue-39be6f1d08a095bd076a71d288d295b6@sha256:70ef1140c7b0e517da5d00f6435d5e62c347820b6a6f3f34c51320a5817e737f
+  image: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:39c5c1d8b2b07448d3345afac45f59af2830e6c90e4a6a3cb33a2caffab7c590
 
 ---
 # Copyright 2018 The Knative Authors
@@ -3938,7 +3938,7 @@ data:
   # This is the Go import path for the binary that is containerized
   # and substituted here.
   # TODO: switch to 'queue-sidecar-image' after 0.27
-  queueSidecarImage: docker.io/vhiveease/queue-39be6f1d08a095bd076a71d288d295b6@sha256:70ef1140c7b0e517da5d00f6435d5e62c347820b6a6f3f34c51320a5817e737f
+  queueSidecarImage: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:39c5c1d8b2b07448d3345afac45f59af2830e6c90e4a6a3cb33a2caffab7c590
   _example: |-
     ################################
     #                              #
@@ -4949,14 +4949,12 @@ spec:
         app.kubernetes.io/version: devel
         serving.knative.dev/release: devel
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: $MASTER_NODE_NAME
       serviceAccountName: controller
       containers:
         - name: activator
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/vhiveease/activator-ecd51ca5034883acbe737fde417a3d86@sha256:dfea5318b9cf2c1628bded0cdea93dc1eceb64ebd9a325e1e0de7e8b0d5a78d5
+          image: docker.io/lightxyz/activator-ecd51ca5034883acbe737fde417a3d86@sha256:6f2c55b36278c4c4634647bddfe79d94782039d378375c37b4128bc322d4be33
           # The numbers are based on performance test results from
           # https://github.com/knative/serving/issues/1625#issuecomment-511930023
           resources:
@@ -4964,8 +4962,8 @@ spec:
               cpu: 300m
               memory: 60Mi
             limits:
-              cpu: 2
-              memory: 3Gi
+              cpu: 1000m
+              memory: 600Mi
           env:
             # Run Activator with GC collection when newly generated memory is 500%.
             - name: GOGC
@@ -5106,21 +5104,29 @@ spec:
         app.kubernetes.io/version: devel
         serving.knative.dev/release: devel
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: $MASTER_NODE_NAME
+      # To avoid node becoming SPOF, spread our replicas to different nodes.
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: autoscaler
+                topologyKey: kubernetes.io/hostname
+              weight: 100
       serviceAccountName: controller
       containers:
         - name: autoscaler
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/vhiveease/autoscaler-12c0fa24db31956a7cfa673210e4fa13@sha256:b327d3152ae36087152477c05cad8ecd73eb6d2cb7d4657462daa16cc322b3e5
+          image: docker.io/lightxyz/autoscaler
           resources:
             requests:
               cpu: 100m
               memory: 100Mi
             limits:
-              cpu: 2
-              memory: 3Gi
+              cpu: 1000m
+              memory: 1000Mi
           env:
             - name: POD_NAME
               valueFrom:
@@ -5235,21 +5241,29 @@ spec:
         app.kubernetes.io/version: devel
         serving.knative.dev/release: devel
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: $MASTER_NODE_NAME
+      # To avoid node becoming SPOF, spread our replicas to different nodes.
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: controller
+                topologyKey: kubernetes.io/hostname
+              weight: 100
       serviceAccountName: controller
       containers:
         - name: controller
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/vhiveease/controller-f6fdb41c6acbc726e29a3104ff2ef720@sha256:2d8fdc26659f3bed5d772ef30caa615da230e98a800d674ed70db762fe3034fe
+          image: docker.io/lightxyz/controller-f6fdb41c6acbc726e29a3104ff2ef720@sha256:937588cc8bf25ee513f7af7f6090deec817a97a5a037de9b88a06ec6181067ce
           resources:
             requests:
               cpu: 100m
               memory: 100Mi
             limits:
-              cpu: 1
-              memory: 2Gi
+              cpu: 1000m
+              memory: 1000Mi
           env:
             - name: POD_NAME
               valueFrom:
@@ -5342,21 +5356,29 @@ spec:
         app.kubernetes.io/version: devel
         serving.knative.dev/release: devel
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: $MASTER_NODE_NAME
+      # To avoid node becoming SPOF, spread our replicas to different nodes.
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: domain-mapping
+                topologyKey: kubernetes.io/hostname
+              weight: 100
       serviceAccountName: controller
       containers:
         - name: domain-mapping
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/vhiveease/domain-mapping-82f8626be89c35bcd6c666fd2fc8ccb7@sha256:c633e82cc461ce4290f19e8c7bddb0168ae324333fc1c811d73c42d36ff36a02
+          image: docker.io/lightxyz/domain-mapping-82f8626be89c35bcd6c666fd2fc8ccb7@sha256:e1c1d1f4413455c5d794e7845bad4d453948a7e38fec9fd1028cb1e5557f2728
           resources:
             requests:
               cpu: 30m
               memory: 40Mi
             limits:
-              cpu: 1
-              memory: 2Gi
+              cpu: 300m
+              memory: 400Mi
           env:
             - name: SYSTEM_NAMESPACE
               valueFrom:
@@ -5424,21 +5446,29 @@ spec:
         app.kubernetes.io/version: devel
         serving.knative.dev/release: devel
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: $MASTER_NODE_NAME
+      # To avoid node becoming SPOF, spread our replicas to different nodes.
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: domainmapping-webhook
+                topologyKey: kubernetes.io/hostname
+              weight: 100
       serviceAccountName: controller
       containers:
         - name: domainmapping-webhook
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/vhiveease/domain-mapping-webhook-a127ae3e896f4e4bc1179581011b7824@sha256:e4e89edf0b0ee536b53f9987dd12888b4c034fc2da4be2810cd8d40cddb19bcb
+          image: docker.io/lightxyz/domain-mapping-webhook-a127ae3e896f4e4bc1179581011b7824@sha256:105cbe9f832aefba2663a05612cb2cde7d712b4a1d114e62aeb908ab2f0ac48d
           resources:
             requests:
               cpu: 100m
               memory: 100Mi
             limits:
-              cpu: 1
-              memory: 2Gi
+              cpu: 500m
+              memory: 500Mi
           env:
             - name: POD_NAME
               valueFrom:
@@ -5619,21 +5649,29 @@ spec:
         app.kubernetes.io/version: devel
         app.kubernetes.io/name: knative-serving
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: $MASTER_NODE_NAME
+      # To avoid node becoming SPOF, spread our replicas to different nodes.
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: webhook
+                topologyKey: kubernetes.io/hostname
+              weight: 100
       serviceAccountName: controller
       containers:
         - name: webhook
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/vhiveease/webhook-261c6506fca17bc41be50b3461f98f1c@sha256:396c9777db3c4f1952cf0d3aeff3364925898ed33bf12271c4248e19aadce402
+          image: docker.io/lightxyz/webhook-261c6506fca17bc41be50b3461f98f1c@sha256:e126c9d1e0a715564048b2fc87deb10eb64628155f5d2cef817a815b35f06d57
           resources:
             requests:
               cpu: 100m
               memory: 100Mi
             limits:
-              cpu: 1
-              memory: 2Gi
+              cpu: 500m
+              memory: 500Mi
           env:
             - name: POD_NAME
               valueFrom:

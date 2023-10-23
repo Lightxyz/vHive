@@ -39,7 +39,7 @@ spec:
         - name: default-domain
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/vhiveease/default-domain-dd6f55160290a90018ba318b624be12e@sha256:dd9615e1688a2d50df81b4d232abc998b58b3f0ed841d0a6e84d23e84c6611b5
+          image: docker.io/lightxyz/default-domain-dd6f55160290a90018ba318b624be12e@sha256:a01b1c28bdc7f34b07393383233de2d717b6b27a24828c8bcb672eca108a476e
           args: ["-magic-dns=sslip.io"]
           ports:
             - name: http
