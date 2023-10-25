@@ -3549,7 +3549,7 @@ metadata:
 spec:
   # This is the Go import path for the binary that is containerized
   # and substituted here.
-  image: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:39c5c1d8b2b07448d3345afac45f59af2830e6c90e4a6a3cb33a2caffab7c590
+  image: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:b8e6402ec9751713699ac280ba2d1870cbf0ff37a54edc07df93a1a490764264
 
 ---
 # Copyright 2018 The Knative Authors
@@ -3938,7 +3938,7 @@ data:
   # This is the Go import path for the binary that is containerized
   # and substituted here.
   # TODO: switch to 'queue-sidecar-image' after 0.27
-  queueSidecarImage: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:39c5c1d8b2b07448d3345afac45f59af2830e6c90e4a6a3cb33a2caffab7c590
+  queueSidecarImage: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:b8e6402ec9751713699ac280ba2d1870cbf0ff37a54edc07df93a1a490764264
   _example: |-
     ################################
     #                              #
@@ -4954,7 +4954,7 @@ spec:
         - name: activator
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/activator-ecd51ca5034883acbe737fde417a3d86@sha256:6f2c55b36278c4c4634647bddfe79d94782039d378375c37b4128bc322d4be33
+          image: docker.io/lightxyz/activator-ecd51ca5034883acbe737fde417a3d86@sha256:9bea3b4576d34bcf832aaa4147c90309f5ae9cc899f24d96cae909c90dbc8a21
           # The numbers are based on performance test results from
           # https://github.com/knative/serving/issues/1625#issuecomment-511930023
           resources:
@@ -4962,8 +4962,8 @@ spec:
               cpu: 300m
               memory: 60Mi
             limits:
-              cpu: 1000m
-              memory: 600Mi
+              cpu: 2
+              memory: 3Gi
           env:
             # Run Activator with GC collection when newly generated memory is 500%.
             - name: GOGC
@@ -5125,8 +5125,8 @@ spec:
               cpu: 100m
               memory: 100Mi
             limits:
-              cpu: 1000m
-              memory: 1000Mi
+              cpu: 2
+              memory: 3Gi
           env:
             - name: POD_NAME
               valueFrom:
@@ -5256,14 +5256,14 @@ spec:
         - name: controller
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/controller-f6fdb41c6acbc726e29a3104ff2ef720@sha256:937588cc8bf25ee513f7af7f6090deec817a97a5a037de9b88a06ec6181067ce
+          image: docker.io/lightxyz/controller-f6fdb41c6acbc726e29a3104ff2ef720@sha256:2ddcb07f856aa501dee67fe79b74d7f6d31723cb914df073d42fda34a063ea0c
           resources:
             requests:
               cpu: 100m
               memory: 100Mi
             limits:
-              cpu: 1000m
-              memory: 1000Mi
+              cpu: 1
+              memory: 2Gi
           env:
             - name: POD_NAME
               valueFrom:
@@ -5371,14 +5371,14 @@ spec:
         - name: domain-mapping
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/domain-mapping-82f8626be89c35bcd6c666fd2fc8ccb7@sha256:e1c1d1f4413455c5d794e7845bad4d453948a7e38fec9fd1028cb1e5557f2728
+          image: docker.io/lightxyz/domain-mapping-82f8626be89c35bcd6c666fd2fc8ccb7@sha256:eb6002c64efe9a6e3e4591151686d701e4d35848e973f531d0f292743f7d97af
           resources:
             requests:
               cpu: 30m
               memory: 40Mi
             limits:
-              cpu: 300m
-              memory: 400Mi
+              cpu: 1
+              memory: 2Gi
           env:
             - name: SYSTEM_NAMESPACE
               valueFrom:
@@ -5461,14 +5461,14 @@ spec:
         - name: domainmapping-webhook
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/domain-mapping-webhook-a127ae3e896f4e4bc1179581011b7824@sha256:105cbe9f832aefba2663a05612cb2cde7d712b4a1d114e62aeb908ab2f0ac48d
+          image: docker.io/lightxyz/domain-mapping-webhook-a127ae3e896f4e4bc1179581011b7824@sha256:aab84c00dd4cef5dd2f53ee19d9409d861d1bb8e5d805970f0a9293988406def
           resources:
             requests:
               cpu: 100m
               memory: 100Mi
             limits:
-              cpu: 500m
-              memory: 500Mi
+              cpu: 1
+              memory: 2Gi
           env:
             - name: POD_NAME
               valueFrom:
@@ -5664,14 +5664,14 @@ spec:
         - name: webhook
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/webhook-261c6506fca17bc41be50b3461f98f1c@sha256:e126c9d1e0a715564048b2fc87deb10eb64628155f5d2cef817a815b35f06d57
+          image: docker.io/lightxyz/webhook-261c6506fca17bc41be50b3461f98f1c@sha256:8b69ae308237af40f0a8c980e09aaf3f107c370949ac02d72251001f874d718c
           resources:
             requests:
               cpu: 100m
               memory: 100Mi
             limits:
-              cpu: 500m
-              memory: 500Mi
+              cpu: 1
+              memory: 2Gi
           env:
             - name: POD_NAME
               valueFrom:
