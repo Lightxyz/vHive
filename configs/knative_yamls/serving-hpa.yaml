@@ -28,8 +28,6 @@ spec:
       app: autoscaler-hpa
   template:
     metadata:
-      annotations:
-        cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
       labels:
         app: autoscaler-hpa
         app.kubernetes.io/component: autoscaler-hpa
@@ -51,7 +49,7 @@ spec:
         - name: autoscaler-hpa
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: ghcr.io/vhive-serverless/autoscaler-hpa-85c0b68178743d74ff7f663a72802ceb@sha256:1797f6c16f0c65b0255651f82e85399ba210cc353044177ad2af159fc20e2122
+          image: docker.io/lightxyz/autoscaler-hpa-85c0b68178743d74ff7f663a72802ceb@sha256:c194f32bef9e1d57026b79ad5dbfdcd9f74eb27767f96e36a320470e6493c96e
           resources:
             requests:
               cpu: 30m
