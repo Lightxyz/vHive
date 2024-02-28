@@ -38,7 +38,7 @@ spec:
         - name: default-domain
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: ghcr.io/vhive-serverless/default-domain-dd6f55160290a90018ba318b624be12e@sha256:0206e792ee18591903e8b8aaaba92d04548c9b63d9742a98195037697bdbc42e
+          image: docker.io/lightxyz/default-domain-dd6f55160290a90018ba318b624be12e@sha256:caff79a9bc6aa4d568715ac3b8a862e83a90b8914a1702e2a7004e3ac5cdfe5e
           args: ["-magic-dns=sslip.io"]
           ports:
             - name: http

@@ -4431,7 +4431,7 @@ metadata:
 spec:
   # This is the Go import path for the binary that is containerized
   # and substituted here.
-  image: ghcr.io/vhive-serverless/queue-39be6f1d08a095bd076a71d288d295b6@sha256:41259c52c99af616fae4e7a44e40c0e90eb8f5593378a4f3de5dbf35ab1df49c
+  image: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:41ff8b58b511ce367bc0de52a670d97658b8e9517b37c167347ea599c5013fe6
 
 ---
 # Copyright 2018 The Knative Authors
@@ -4828,7 +4828,7 @@ metadata:
 data:
   # This is the Go import path for the binary that is containerized
   # and substituted here.
-  queue-sidecar-image: ghcr.io/vhive-serverless/queue-39be6f1d08a095bd076a71d288d295b6@sha256:41259c52c99af616fae4e7a44e40c0e90eb8f5593378a4f3de5dbf35ab1df49c
+  queue-sidecar-image: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:41ff8b58b511ce367bc0de52a670d97658b8e9517b37c167347ea599c5013fe6
   _example: |-
     ################################
     #                              #
@@ -5881,7 +5881,7 @@ spec:
         - name: activator
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: ghcr.io/vhive-serverless/activator-ecd51ca5034883acbe737fde417a3d86@sha256:abf65c8cb9598c6e7c5afb6186618b40afdd75d15b762f44910a0d8a718d953c
+          image: docker.io/lightxyz/activator-ecd51ca5034883acbe737fde417a3d86@sha256:1e96a8fa949d5718d8a8282a350f3f088842db856f247b725f61c98da76770d8
           # The numbers are based on performance test results from
           # https://github.com/knative/serving/issues/1625#issuecomment-511930023
           resources:
@@ -6048,7 +6048,7 @@ spec:
         - name: autoscaler
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: ghcr.io/vhive-serverless/autoscaler-12c0fa24db31956a7cfa673210e4fa13@sha256:76e66b57c8233f9852a719f17b7727bb7d70988cf0cc3a7c86b57e7fdaf1b328
+          image: docker.io/lightxyz/autoscaler-12c0fa24db31956a7cfa673210e4fa13@sha256:61f8067b40182ec5918b9dbc32a737b90a8a693080a766141603ef2476e9e0eb
           resources:
             requests:
               cpu: 100m
@@ -6184,7 +6184,7 @@ spec:
         - name: controller
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: ghcr.io/vhive-serverless/controller-f6fdb41c6acbc726e29a3104ff2ef720@sha256:5496a4fdb200544d88a099aa049bc8cb107b20d0b7da05da241e502ae3d89620
+          image: docker.io/lightxyz/controller-f6fdb41c6acbc726e29a3104ff2ef720@sha256:8da5ebe7ff812d6d20323cff36cedb3156108fd1acf25b5dec0720e4add2b799
           resources:
             requests:
               cpu: 100m
@@ -6298,7 +6298,7 @@ spec:
         - name: domain-mapping
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: ghcr.io/vhive-serverless/domain-mapping-82f8626be89c35bcd6c666fd2fc8ccb7@sha256:6d34ad9e43c2052408e2143017c9a6dadd17beedb7723f24ae8a93a484165127
+          image: docker.io/lightxyz/domain-mapping-82f8626be89c35bcd6c666fd2fc8ccb7@sha256:4545ba092932d4534d9dd0e696daaa3cf2bcb6b4220668a6a2d75fe73e4a7d8b
           resources:
             requests:
               cpu: 30m
@@ -6388,7 +6388,7 @@ spec:
         - name: domainmapping-webhook
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: ghcr.io/vhive-serverless/domain-mapping-webhook-a127ae3e896f4e4bc1179581011b7824@sha256:cb682d3b328bcd2ecfc75479bba436af6718d3bf5f2bc28080e6b8ab7cbe7008
+          image: docker.io/lightxyz/domain-mapping-webhook-a127ae3e896f4e4bc1179581011b7824@sha256:3604b9689e40faf79e87c219408a0196de5210c5a7339ce51b8feed01eeaca84
           resources:
             requests:
               cpu: 100m
@@ -6589,7 +6589,7 @@ spec:
         - name: webhook
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: ghcr.io/vhive-serverless/webhook-261c6506fca17bc41be50b3461f98f1c@sha256:2c559264619d779884b5d3121d7214efc22df54b716fa843c94af29e38eb6238
+          image: docker.io/lightxyz/webhook-261c6506fca17bc41be50b3461f98f1c@sha256:2fe18ef0bbf558aecc9958e8aae711135dc6681cedef93d2ca34f3dbc468affe
           resources:
             requests:
               cpu: 100m
