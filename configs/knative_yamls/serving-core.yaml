@@ -18,9 +18,7 @@ metadata:
   name: knative-serving
   labels:
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
-
----
+    app.kubernetes.io/version: "1.13.1"
 # Copyright 2023 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,7 +32,7 @@ metadata:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
@@ -42,7 +40,7 @@ metadata:
   namespace: knative-serving
   labels:
     serving.knative.dev/controller: "true"
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     app.kubernetes.io/name: knative-serving
 rules:
   - apiGroups: [""]
@@ -59,7 +57,7 @@ metadata:
   name: knative-serving-activator-cluster
   labels:
     serving.knative.dev/controller: "true"
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     app.kubernetes.io/name: knative-serving
 rules:
   - apiGroups: [""]
@@ -68,8 +66,6 @@ rules:
   - apiGroups: ["serving.knative.dev"]
     resources: ["revisions"]
     verbs: ["get", "list", "watch"]
-
----
 # Copyright 2019 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -83,7 +79,7 @@ rules:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 # Use this aggregated ClusterRole when you need readonly access to "Addressables"
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -92,7 +88,7 @@ metadata:
   # (which should be identical, but isn't guaranteed to be installed alongside serving).
   name: knative-serving-aggregated-addressable-resolver
   labels:
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     app.kubernetes.io/name: knative-serving
 aggregationRule:
   clusterRoleSelectors:
@@ -104,7 +100,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: knative-serving-addressable-resolver
   labels:
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     app.kubernetes.io/name: knative-serving
     # Labeled to facilitate aggregated cluster roles that act on Addressables.
     duck.knative.dev/addressable: "true"
@@ -121,8 +117,6 @@ rules:
       - get
       - list
       - watch
-
----
 # Copyright 2019 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -136,14 +130,14 @@ rules:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: knative-serving-namespaced-admin
   labels:
     rbac.authorization.k8s.io/aggregate-to-admin: "true"
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     app.kubernetes.io/name: knative-serving
 rules:
   - apiGroups: ["serving.knative.dev"]
@@ -159,7 +153,7 @@ metadata:
   name: knative-serving-namespaced-edit
   labels:
     rbac.authorization.k8s.io/aggregate-to-edit: "true"
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     app.kubernetes.io/name: knative-serving
 rules:
   - apiGroups: ["serving.knative.dev"]
@@ -175,14 +169,12 @@ metadata:
   name: knative-serving-namespaced-view
   labels:
     rbac.authorization.k8s.io/aggregate-to-view: "true"
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     app.kubernetes.io/name: knative-serving
 rules:
   - apiGroups: ["serving.knative.dev", "networking.internal.knative.dev", "autoscaling.internal.knative.dev", "caching.internal.knative.dev"]
     resources: ["*"]
     verbs: ["get", "list", "watch"]
-
----
 # Copyright 2019 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -196,14 +188,14 @@ rules:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: knative-serving-core
   labels:
     serving.knative.dev/controller: "true"
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     app.kubernetes.io/name: knative-serving
 rules:
   - apiGroups: [""]
@@ -236,8 +228,6 @@ rules:
   - apiGroups: ["caching.internal.knative.dev"]
     resources: ["images"]
     verbs: ["get", "list", "create", "update", "delete", "patch", "watch"]
-
----
 # Copyright 2019 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -251,13 +241,13 @@ rules:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: knative-serving-podspecable-binding
   labels:
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     app.kubernetes.io/name: knative-serving
     # Labeled to facilitate aggregated cluster roles that act on PodSpecables.
     duck.knative.dev/podspecable: "true"
@@ -272,8 +262,6 @@ rules:
       - list
       - watch
       - patch
-
----
 # Copyright 2018 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -287,7 +275,7 @@ rules:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -296,7 +284,7 @@ metadata:
   labels:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
 ---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
@@ -304,7 +292,7 @@ metadata:
   name: knative-serving-admin
   labels:
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
 aggregationRule:
   clusterRoleSelectors:
     - matchLabels:
@@ -317,7 +305,7 @@ metadata:
   labels:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
 subjects:
   - kind: ServiceAccount
     name: controller
@@ -334,7 +322,7 @@ metadata:
   labels:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
 subjects:
   - kind: ServiceAccount
     name: controller
@@ -352,7 +340,7 @@ metadata:
   labels:
     app.kubernetes.io/component: activator
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -362,7 +350,7 @@ metadata:
   labels:
     app.kubernetes.io/component: activator
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
 subjects:
   - kind: ServiceAccount
     name: activator
@@ -379,7 +367,7 @@ metadata:
   labels:
     app.kubernetes.io/component: activator
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
 subjects:
   - kind: ServiceAccount
     name: activator
@@ -388,8 +376,6 @@ roleRef:
   kind: ClusterRole
   name: knative-serving-activator-cluster
   apiGroup: rbac.authorization.k8s.io
-
----
 # Copyright 2018 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -403,14 +389,14 @@ roleRef:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   name: images.caching.internal.knative.dev
   labels:
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     knative.dev/crd-install: "true"
 spec:
   group: caching.internal.knative.dev
@@ -509,8 +495,6 @@ spec:
         - name: Image
           type: string
           jsonPath: .spec.image
-
----
 # Copyright 2020 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -524,7 +508,7 @@ spec:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -532,7 +516,7 @@ metadata:
   labels:
     app.kubernetes.io/name: knative-serving
     app.kubernetes.io/component: networking
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     knative.dev/crd-install: "true"
 spec:
   group: networking.internal.knative.dev
@@ -657,8 +641,6 @@ spec:
     shortNames:
       - kcert
   scope: Namespaced
-
----
 # Copyright 2019 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -672,16 +654,15 @@ spec:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 # Note: The schema part of the spec is auto-generated by hack/update-schemas.sh.
-
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   name: configurations.serving.knative.dev
   labels:
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     knative.dev/crd-install: "true"
     duck.knative.dev/podspecable: "true"
 spec:
@@ -1594,8 +1575,6 @@ spec:
                   description: ObservedGeneration is the 'Generation' of the Service that was last processed by the controller.
                   type: integer
                   format: int64
-
----
 # Copyright 2020 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -1609,7 +1588,7 @@ spec:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -1617,7 +1596,7 @@ metadata:
   labels:
     app.kubernetes.io/name: knative-serving
     app.kubernetes.io/component: networking
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     knative.dev/crd-install: "true"
 spec:
   group: networking.internal.knative.dev
@@ -1659,8 +1638,6 @@ spec:
     shortNames:
       - cdc
   scope: Cluster
-
----
 # Copyright 2020 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -1674,14 +1651,14 @@ spec:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   name: domainmappings.serving.knative.dev
   labels:
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     knative.dev/crd-install: "true"
 spec:
   group: serving.knative.dev
@@ -1824,8 +1801,6 @@ spec:
     shortNames:
       - dm
   scope: Namespaced
-
----
 # Copyright 2020 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -1839,7 +1814,7 @@ spec:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -1847,7 +1822,7 @@ metadata:
   labels:
     app.kubernetes.io/name: knative-serving
     app.kubernetes.io/component: networking
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     knative.dev/crd-install: "true"
 spec:
   group: networking.internal.knative.dev
@@ -2083,8 +2058,6 @@ spec:
       - kingress
       - king
   scope: Namespaced
-
----
 # Copyright 2019 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -2098,16 +2071,15 @@ spec:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 # Note: The schema part of the spec is auto-generated by hack/update-schemas.sh.
-
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   name: metrics.autoscaling.internal.knative.dev
   labels:
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     knative.dev/crd-install: "true"
 spec:
   group: autoscaling.internal.knative.dev
@@ -2205,8 +2177,6 @@ spec:
                   description: ObservedGeneration is the 'Generation' of the Service that was last processed by the controller.
                   type: integer
                   format: int64
-
----
 # Copyright 2018 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -2220,16 +2190,15 @@ spec:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 # Note: The schema part of the spec is auto-generated by hack/update-schemas.sh.
-
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   name: podautoscalers.autoscaling.internal.knative.dev
   labels:
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     knative.dev/crd-install: "true"
 spec:
   group: autoscaling.internal.knative.dev
@@ -2365,8 +2334,6 @@ spec:
                 serviceName:
                   description: ServiceName is the K8s Service name that serves the revision, scaled by this PA. The service is created and owned by the ServerlessService object owned by this PA.
                   type: string
-
----
 # Copyright 2019 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -2380,16 +2347,15 @@ spec:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 # Note: The schema part of the spec is auto-generated by hack/update-schemas.sh.
-
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   name: revisions.serving.knative.dev
   labels:
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     knative.dev/crd-install: "true"
 spec:
   group: serving.knative.dev
@@ -3308,8 +3274,6 @@ spec:
                   description: ObservedGeneration is the 'Generation' of the Service that was last processed by the controller.
                   type: integer
                   format: int64
-
----
 # Copyright 2019 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -3323,16 +3287,15 @@ spec:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 # Note: The schema part of the spec is auto-generated by hack/update-schemas.sh.
-
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   name: routes.serving.knative.dev
   labels:
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     knative.dev/crd-install: "true"
     duck.knative.dev/addressable: "true"
 spec:
@@ -3492,8 +3455,6 @@ spec:
                 url:
                   description: URL holds the url that will distribute traffic over the provided traffic targets. It generally has the form http[s]://{route-name}.{route-namespace}.{cluster-level-suffix}
                   type: string
-
----
 # Copyright 2019 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -3507,7 +3468,7 @@ spec:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -3515,7 +3476,7 @@ metadata:
   labels:
     app.kubernetes.io/name: knative-serving
     app.kubernetes.io/component: networking
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     knative.dev/crd-install: "true"
 spec:
   group: networking.internal.knative.dev
@@ -3657,8 +3618,6 @@ spec:
     shortNames:
       - sks
   scope: Namespaced
-
----
 # Copyright 2019 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -3672,16 +3631,15 @@ spec:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 # Note: The schema part of the spec is auto-generated by hack/update-schemas.sh.
-
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   name: services.serving.knative.dev
   labels:
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     knative.dev/crd-install: "true"
     duck.knative.dev/addressable: "true"
     duck.knative.dev/podspecable: "true"
@@ -4668,8 +4626,6 @@ spec:
                 url:
                   description: URL holds the url that will distribute traffic over the provided traffic targets. It generally has the form http[s]://{route-name}.{route-namespace}.{cluster-level-suffix}
                   type: string
-
----
 # Copyright 2022 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -4683,7 +4639,7 @@ spec:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: v1
 kind: Secret
 metadata:
@@ -4694,7 +4650,6 @@ metadata:
   labels:
     serving-certs-ctrl: "data-plane"
     networking.internal.knative.dev/certificate-uid: "serving-certs"
-
 # The data is populated when knative-internal-tls is enabled.
 ---
 apiVersion: v1
@@ -4707,7 +4662,6 @@ metadata:
   labels:
     serving-certs-ctrl: "data-plane"
     networking.internal.knative.dev/certificate-uid: "serving-certs"
-
 # The data is populated when knative-internal-tls is enabled.
 ---
 apiVersion: v1
@@ -4719,8 +4673,6 @@ metadata:
     serving-certs-ctrl: "data-plane-routing"
     networking.internal.knative.dev/certificate-uid: "serving-certs"
 # The data is populated when knative-internal-tls is enabled.
-
----
 # Copyright 2018 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -4734,7 +4686,7 @@ metadata:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: caching.internal.knative.dev/v1alpha1
 kind: Image
 metadata:
@@ -4743,13 +4695,11 @@ metadata:
   labels:
     app.kubernetes.io/component: queue-proxy
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
 spec:
   # This is the Go import path for the binary that is containerized
   # and substituted here.
-  image: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:d1a48a887ecf195fce6a17470871d2d8457ddbbe6f2d609c30cfbababadd5ab5
-
----
+  image: gcr.io/knative-releases/knative.dev/serving/cmd/queue@sha256:e52286fc4843470383e917abc9c1b0c8d10f585c4274c57b612279869bc86f0d
 # Copyright 2018 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -4763,7 +4713,7 @@ spec:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -4772,7 +4722,7 @@ metadata:
   labels:
     app.kubernetes.io/component: autoscaler
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
   annotations:
     knative.dev/example-checksum: "47c2487f"
 data:
@@ -4959,8 +4909,6 @@ data:
     # (including a maxScale of "0" = unlimited) is disallowed.
     # A value of zero (the default) allows any limit, including unlimited.
     max-scale-limit: "0"
-
----
 # Copyright 2019 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -4974,7 +4922,7 @@ data:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -4983,7 +4931,7 @@ metadata:
   labels:
     app.kubernetes.io/name: knative-serving
     app.kubernetes.io/component: controller
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
   annotations:
     knative.dev/example-checksum: "e7973912"
 data:
@@ -5114,8 +5062,6 @@ data:
     # to set this value to `false`.
     # See https://github.com/knative/serving/issues/8498.
     enable-service-links: "false"
-
----
 # Copyright 2019 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -5129,7 +5075,7 @@ data:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -5138,13 +5084,13 @@ metadata:
   labels:
     app.kubernetes.io/name: knative-serving
     app.kubernetes.io/component: controller
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
   annotations:
     knative.dev/example-checksum: "ed77183a"
 data:
   # This is the Go import path for the binary that is containerized
   # and substituted here.
-  queue-sidecar-image: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:d1a48a887ecf195fce6a17470871d2d8457ddbbe6f2d609c30cfbababadd5ab5
+  queue-sidecar-image: gcr.io/knative-releases/knative.dev/serving/cmd/queue@sha256:e52286fc4843470383e917abc9c1b0c8d10f585c4274c57b612279869bc86f0d
   _example: |-
     ################################
     #                              #
@@ -5209,8 +5155,6 @@ data:
     # Sets rootCA for the queue proxy - used by QPOptions
     # If omitted, or empty, no rootCA is added to the golang rootCAs
     queue-sidecar-rootca: ""
-
----
 # Copyright 2018 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -5224,7 +5168,7 @@ data:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -5233,7 +5177,7 @@ metadata:
   labels:
     app.kubernetes.io/name: knative-serving
     app.kubernetes.io/component: controller
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
   annotations:
     knative.dev/example-checksum: "26c09de5"
 data:
@@ -5274,8 +5218,6 @@ data:
     example.org: |
       selector:
         app: nonprofit
-
----
 # Copyright 2020 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -5289,7 +5231,7 @@ data:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -5298,7 +5240,7 @@ metadata:
   labels:
     app.kubernetes.io/name: knative-serving
     app.kubernetes.io/component: controller
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
   annotations:
     knative.dev/example-checksum: "f2fc138e"
 data:
@@ -5488,8 +5430,6 @@ data:
 
     # Default queue proxy resource requests and limits to good values for most cases if set.
     queueproxy.resource-defaults: "disabled"
-
----
 # Copyright 2018 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -5503,7 +5443,7 @@ data:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -5512,7 +5452,7 @@ metadata:
   labels:
     app.kubernetes.io/name: knative-serving
     app.kubernetes.io/component: controller
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
   annotations:
     knative.dev/example-checksum: "aa3813a8"
 data:
@@ -5588,8 +5528,6 @@ data:
     # Maximum number of non-active revisions to retain
     # or "disabled" to disable any maximum limit.
     max-non-active-revisions: "1000"
-
----
 # Copyright 2020 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -5603,7 +5541,7 @@ data:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -5612,7 +5550,7 @@ metadata:
   labels:
     app.kubernetes.io/name: knative-serving
     app.kubernetes.io/component: controller
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
   annotations:
     knative.dev/example-checksum: "f4b71f57"
 data:
@@ -5650,8 +5588,6 @@ data:
     # bucket will take care of the reconciling for the keys partitioned into
     # that bucket.
     buckets: "1"
-
----
 # Copyright 2018 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -5665,14 +5601,14 @@ data:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: config-logging
   namespace: knative-serving
   labels:
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     app.kubernetes.io/component: logging
     app.kubernetes.io/name: knative-serving
   annotations:
@@ -5732,8 +5668,6 @@ data:
     loglevel.net-contour-controller: "info"
     loglevel.net-kourier-controller: "info"
     loglevel.net-gateway-api-controller: "info"
-
----
 # Copyright 2018 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -5747,7 +5681,7 @@ data:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -5756,7 +5690,7 @@ metadata:
   labels:
     app.kubernetes.io/name: knative-serving
     app.kubernetes.io/component: networking
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
   annotations:
     knative.dev/example-checksum: "0573e07d"
 data:
@@ -5937,8 +5871,6 @@ data:
     # fronting Knative with an external loadbalancer that deals with TLS termination and
     # Knative doesn't know about that otherwise.
     default-external-scheme: "http"
-
----
 # Copyright 2018 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -5952,7 +5884,7 @@ data:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -5961,7 +5893,7 @@ metadata:
   labels:
     app.kubernetes.io/name: knative-serving
     app.kubernetes.io/component: observability
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
   annotations:
     knative.dev/example-checksum: "54abd711"
 data:
@@ -6057,8 +5989,6 @@ data:
     # enabled, the Knative Serving pods expose the profiling data on an alternate HTTP port 8008.
     # The HTTP context root for profiling is then /debug/pprof/.
     profiling.enable: "false"
-
----
 # Copyright 2019 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -6072,7 +6002,7 @@ data:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -6081,7 +6011,7 @@ metadata:
   labels:
     app.kubernetes.io/name: knative-serving
     app.kubernetes.io/component: tracing
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
   annotations:
     knative.dev/example-checksum: "26614636"
 data:
@@ -6114,8 +6044,6 @@ data:
 
     # Percentage (0-1) of requests to trace
     sample-rate: "0.1"
-
----
 # Copyright 2020 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -6129,7 +6057,7 @@ data:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
@@ -6138,7 +6066,7 @@ metadata:
   labels:
     app.kubernetes.io/component: activator
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
 spec:
   minReplicas: 1
   maxReplicas: 20
@@ -6166,14 +6094,12 @@ metadata:
   labels:
     app.kubernetes.io/component: activator
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
 spec:
   minAvailable: 80%
   selector:
     matchLabels:
       app: activator
-
----
 # Copyright 2018 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -6187,7 +6113,7 @@ spec:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -6195,7 +6121,7 @@ metadata:
   namespace: knative-serving
   labels:
     app.kubernetes.io/component: activator
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     app.kubernetes.io/name: knative-serving
 spec:
   selector:
@@ -6209,14 +6135,14 @@ spec:
         role: activator
         app.kubernetes.io/component: activator
         app.kubernetes.io/name: knative-serving
-        app.kubernetes.io/version: devel
+        app.kubernetes.io/version: "1.13.1"
     spec:
       serviceAccountName: activator
       containers:
         - name: activator
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/activator-ecd51ca5034883acbe737fde417a3d86@sha256:af83c0dcb8d9ed5434cde1fa8d131e7addd536a096e849f98eb0c0a6606ad479
+          image: gcr.io/knative-releases/knative.dev/serving/cmd/activator@sha256:21f8e11a44bf1e260602d30e6762a3dc433c608d1dd0e309c0ff89728e71901d
           # The numbers are based on performance test results from
           # https://github.com/knative/serving/issues/1625#issuecomment-511930023
           resources:
@@ -6224,8 +6150,8 @@ spec:
               cpu: 300m
               memory: 60Mi
             limits:
-              cpu: 1000m
-              memory: 600Mi
+              cpu: 3
+              memory: 10Gi
           env:
             # Run Activator with GC collection when newly generated memory is 500%.
             - name: GOGC
@@ -6292,6 +6218,8 @@ spec:
       # timeoutSeconds property to avoid servicing events disrupting
       # connections.
       terminationGracePeriodSeconds: 600
+      nodeSelector:
+        loader-nodetype: master
 ---
 apiVersion: v1
 kind: Service
@@ -6301,7 +6229,7 @@ metadata:
   labels:
     app: activator
     app.kubernetes.io/component: activator
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     app.kubernetes.io/name: knative-serving
 spec:
   selector:
@@ -6324,8 +6252,6 @@ spec:
       port: 443
       targetPort: 8112
   type: ClusterIP
-
----
 # Copyright 2018 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -6339,7 +6265,7 @@ spec:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -6348,7 +6274,7 @@ metadata:
   labels:
     app.kubernetes.io/component: autoscaler
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
 spec:
   replicas: 1
   selector:
@@ -6364,31 +6290,21 @@ spec:
         app: autoscaler
         app.kubernetes.io/component: autoscaler
         app.kubernetes.io/name: knative-serving
-        app.kubernetes.io/version: devel
+        app.kubernetes.io/version: "1.13.1"
     spec:
-      # To avoid node becoming SPOF, spread our replicas to different nodes.
-      affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - podAffinityTerm:
-                labelSelector:
-                  matchLabels:
-                    app: autoscaler
-                topologyKey: kubernetes.io/hostname
-              weight: 100
       serviceAccountName: controller
       containers:
         - name: autoscaler
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/autoscaler-12c0fa24db31956a7cfa673210e4fa13@sha256:980dd1bf76be490d63c99e36fe58f44c0ce2f1aceadd3346981f98eba57c9984
+          image: gcr.io/knative-releases/knative.dev/serving/cmd/autoscaler@sha256:34796e9f760bb67065c6f101296513b38d04d39d11888e919692ac46fa6dc7c2
           resources:
             requests:
               cpu: 100m
               memory: 100Mi
             limits:
-              cpu: 1000m
-              memory: 1000Mi
+              cpu: 3
+              memory: 10Gi
           env:
             - name: POD_NAME
               valueFrom:
@@ -6438,6 +6354,8 @@ spec:
                 - name: k-kubelet-probe
                   value: "autoscaler"
             failureThreshold: 6
+      nodeSelector:
+        loader-nodetype: master
 ---
 apiVersion: v1
 kind: Service
@@ -6446,7 +6364,7 @@ metadata:
     app: autoscaler
     app.kubernetes.io/component: autoscaler
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
   name: autoscaler
   namespace: knative-serving
 spec:
@@ -6463,8 +6381,6 @@ spec:
       targetPort: 8080
   selector:
     app: autoscaler
-
----
 # Copyright 2018 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -6478,7 +6394,7 @@ spec:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -6487,7 +6403,7 @@ metadata:
   labels:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
 spec:
   selector:
     matchLabels:
@@ -6498,31 +6414,21 @@ spec:
         app: controller
         app.kubernetes.io/component: controller
         app.kubernetes.io/name: knative-serving
-        app.kubernetes.io/version: devel
+        app.kubernetes.io/version: "1.13.1"
     spec:
-      # To avoid node becoming SPOF, spread our replicas to different nodes.
-      affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - podAffinityTerm:
-                labelSelector:
-                  matchLabels:
-                    app: controller
-                topologyKey: kubernetes.io/hostname
-              weight: 100
       serviceAccountName: controller
       containers:
         - name: controller
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/controller-f6fdb41c6acbc726e29a3104ff2ef720@sha256:8fa3e210c1b906b39b5700535f62d2188c8597f887315ebb5d0dae936a0c5d9a
+          image: gcr.io/knative-releases/knative.dev/serving/cmd/controller@sha256:53d9aa4d2c7a82f5a01202e386f7503b21839cbe2e5e62f1e9bda2aa5f11b518
           resources:
             requests:
               cpu: 100m
               memory: 100Mi
             limits:
-              cpu: 1000m
-              memory: 1000Mi
+              cpu: 3
+              memory: 10Gi
           env:
             - name: POD_NAME
               valueFrom:
@@ -6569,6 +6475,8 @@ spec:
               containerPort: 8008
             - name: probes
               containerPort: 8080
+      nodeSelector:
+        loader-nodetype: master
 ---
 apiVersion: v1
 kind: Service
@@ -6577,7 +6485,7 @@ metadata:
     app: controller
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
   name: controller
   namespace: knative-serving
 spec:
@@ -6591,8 +6499,6 @@ spec:
       targetPort: 8008
   selector:
     app: controller
-
----
 # Copyright 2020 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -6606,7 +6512,7 @@ spec:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
@@ -6615,7 +6521,7 @@ metadata:
   labels:
     app.kubernetes.io/component: webhook
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
 spec:
   minReplicas: 1
   maxReplicas: 5
@@ -6641,14 +6547,12 @@ metadata:
   labels:
     app.kubernetes.io/component: webhook
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
 spec:
   minAvailable: 80%
   selector:
     matchLabels:
       app: webhook
-
----
 # Copyright 2018 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -6662,7 +6566,7 @@ spec:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -6670,7 +6574,7 @@ metadata:
   namespace: knative-serving
   labels:
     app.kubernetes.io/component: webhook
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     app.kubernetes.io/name: knative-serving
 spec:
   selector:
@@ -6683,32 +6587,22 @@ spec:
         app: webhook
         role: webhook
         app.kubernetes.io/component: webhook
-        app.kubernetes.io/version: devel
+        app.kubernetes.io/version: "1.13.1"
         app.kubernetes.io/name: knative-serving
     spec:
-      # To avoid node becoming SPOF, spread our replicas to different nodes.
-      affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - podAffinityTerm:
-                labelSelector:
-                  matchLabels:
-                    app: webhook
-                topologyKey: kubernetes.io/hostname
-              weight: 100
       serviceAccountName: controller
       containers:
         - name: webhook
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/webhook-261c6506fca17bc41be50b3461f98f1c@sha256:ae8aae7272c7257204fcc28b7a3e412a5cc2deb87d92730adfc1ec3f8720a5a1
+          image: gcr.io/knative-releases/knative.dev/serving/cmd/webhook@sha256:700c69915dc7cd86dffb61c26b0ba34427fab809de1e3344589dd955b6440882
           resources:
             requests:
               cpu: 100m
               memory: 100Mi
             limits:
-              cpu: 500m
-              memory: 500Mi
+              cpu: 3
+              memory: 10Gi
           env:
             - name: POD_NAME
               valueFrom:
@@ -6766,6 +6660,8 @@ spec:
       # Our webhook should gracefully terminate by lame ducking first, set this to a sufficiently
       # high value that we respect whatever value it has configured for the lame duck grace period.
       terminationGracePeriodSeconds: 300
+      nodeSelector:
+        loader-nodetype: master
 ---
 apiVersion: v1
 kind: Service
@@ -6774,7 +6670,7 @@ metadata:
     app: webhook
     role: webhook
     app.kubernetes.io/component: webhook
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
     app.kubernetes.io/name: knative-serving
   name: webhook
   namespace: knative-serving
@@ -6793,8 +6689,6 @@ spec:
   selector:
     app: webhook
     role: webhook
-
----
 # Copyright 2020 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -6808,7 +6702,7 @@ spec:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
@@ -6816,7 +6710,7 @@ metadata:
   labels:
     app.kubernetes.io/component: webhook
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
 webhooks:
   - admissionReviewVersions: ["v1", "v1beta1"]
     clientConfig:
@@ -6835,8 +6729,6 @@ webhooks:
           operator: In
           values: ["autoscaler", "controller", "logging", "networking", "observability", "tracing"]
     timeoutSeconds: 10
-
----
 # Copyright 2020 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -6850,7 +6742,7 @@ webhooks:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: admissionregistration.k8s.io/v1
 kind: MutatingWebhookConfiguration
 metadata:
@@ -6858,7 +6750,7 @@ metadata:
   labels:
     app.kubernetes.io/component: webhook
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
 webhooks:
   - admissionReviewVersions: ["v1", "v1beta1"]
     clientConfig:
@@ -6892,8 +6784,6 @@ webhooks:
           - services
           - domainmappings
           - domainmappings/status
-
----
 # Copyright 2020 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -6907,7 +6797,7 @@ webhooks:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
@@ -6915,7 +6805,7 @@ metadata:
   labels:
     app.kubernetes.io/component: webhook
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
 webhooks:
   - admissionReviewVersions: ["v1", "v1beta1"]
     clientConfig:
@@ -6950,8 +6840,6 @@ webhooks:
           - services
           - domainmappings
           - domainmappings/status
-
----
 # Copyright 2020 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -6965,7 +6853,7 @@ webhooks:
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+---
 apiVersion: v1
 kind: Secret
 metadata:
@@ -6974,7 +6862,6 @@ metadata:
   labels:
     app.kubernetes.io/component: webhook
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.13.1"
 # The data is populated at install time.
-
 ---
