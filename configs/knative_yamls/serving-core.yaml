@@ -4747,7 +4747,7 @@ metadata:
 spec:
   # This is the Go import path for the binary that is containerized
   # and substituted here.
-  image: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:47ffadc90cbb3688bc1ed096df314a03b059a108027b1c8dae2403aced15cbd5
+  image: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:7ee6adb86dddafbec9291654526f2183bc6b0cab72046c8d1db8347994658208
 
 ---
 # Copyright 2018 The Knative Authors
@@ -5144,7 +5144,7 @@ metadata:
 data:
   # This is the Go import path for the binary that is containerized
   # and substituted here.
-  queue-sidecar-image: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:47ffadc90cbb3688bc1ed096df314a03b059a108027b1c8dae2403aced15cbd5
+  queue-sidecar-image: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:7ee6adb86dddafbec9291654526f2183bc6b0cab72046c8d1db8347994658208
   _example: |-
     ################################
     #                              #
@@ -6216,7 +6216,7 @@ spec:
         - name: activator
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/activator-ecd51ca5034883acbe737fde417a3d86@sha256:a711b13a31b6307f235b6e2212514e6abc64736eb975d9d6749765cb951a94d9
+          image: docker.io/lightxyz/activator-ecd51ca5034883acbe737fde417a3d86@sha256:4ca03f0a6e8aa8e4026e26b89ed17e9431c8139cece44ae6724efd7dcebd0ba2
           # The numbers are based on performance test results from
           # https://github.com/knative/serving/issues/1625#issuecomment-511930023
           resources:
@@ -6224,8 +6224,8 @@ spec:
               cpu: 300m
               memory: 60Mi
             limits:
-              cpu: 3
-              memory: 10Gi
+              cpu: 1000m
+              memory: 600Mi
           env:
             # Run Activator with GC collection when newly generated memory is 500%.
             - name: GOGC
@@ -6292,8 +6292,6 @@ spec:
       # timeoutSeconds property to avoid servicing events disrupting
       # connections.
       terminationGracePeriodSeconds: 600
-      nodeSelector:
-        loader-nodetype: master
 ---
 apiVersion: v1
 kind: Service
@@ -6368,19 +6366,29 @@ spec:
         app.kubernetes.io/name: knative-serving
         app.kubernetes.io/version: devel
     spec:
+      # To avoid node becoming SPOF, spread our replicas to different nodes.
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: autoscaler
+                topologyKey: kubernetes.io/hostname
+              weight: 100
       serviceAccountName: controller
       containers:
         - name: autoscaler
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/autoscaler-12c0fa24db31956a7cfa673210e4fa13@sha256:aceb83eee63d0262a8161877cbfb3863722ff7f2ca005041f6d1835e7e476d1d
+          image: docker.io/lightxyz/autoscaler-12c0fa24db31956a7cfa673210e4fa13@sha256:955dfed04dea9bab37f5f07e5bf3efd58bd159665d42b9cea064754baa29dc10
           resources:
             requests:
               cpu: 100m
               memory: 100Mi
             limits:
-              cpu: 3
-              memory: 10Gi
+              cpu: 1000m
+              memory: 1000Mi
           env:
             - name: POD_NAME
               valueFrom:
@@ -6430,8 +6438,6 @@ spec:
                 - name: k-kubelet-probe
                   value: "autoscaler"
             failureThreshold: 6
-      nodeSelector:
-        loader-nodetype: master
 ---
 apiVersion: v1
 kind: Service
@@ -6494,19 +6500,29 @@ spec:
         app.kubernetes.io/name: knative-serving
         app.kubernetes.io/version: devel
     spec:
+      # To avoid node becoming SPOF, spread our replicas to different nodes.
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: controller
+                topologyKey: kubernetes.io/hostname
+              weight: 100
       serviceAccountName: controller
       containers:
         - name: controller
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/controller-f6fdb41c6acbc726e29a3104ff2ef720@sha256:eb0df2d00d4614f75d6dbe900ccd11b86190215f5d06e768c8a94fdeb5f1cf40
+          image: docker.io/lightxyz/controller-f6fdb41c6acbc726e29a3104ff2ef720@sha256:1d0d3745923d1d63945375fd672e1d1e4bf5ed8fb288c7fa9dbe28f775fe262c
           resources:
             requests:
               cpu: 100m
               memory: 100Mi
             limits:
-              cpu: 3
-              memory: 10Gi
+              cpu: 1000m
+              memory: 1000Mi
           env:
             - name: POD_NAME
               valueFrom:
@@ -6553,8 +6569,6 @@ spec:
               containerPort: 8008
             - name: probes
               containerPort: 8080
-      nodeSelector:
-        loader-nodetype: master
 ---
 apiVersion: v1
 kind: Service
@@ -6672,19 +6686,29 @@ spec:
         app.kubernetes.io/version: devel
         app.kubernetes.io/name: knative-serving
     spec:
+      # To avoid node becoming SPOF, spread our replicas to different nodes.
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: webhook
+                topologyKey: kubernetes.io/hostname
+              weight: 100
       serviceAccountName: controller
       containers:
         - name: webhook
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/webhook-261c6506fca17bc41be50b3461f98f1c@sha256:70607eda0184cf4e4fe6c02371fb6e85b4468402262a773d34518c757ada4e4d
+          image: docker.io/lightxyz/webhook-261c6506fca17bc41be50b3461f98f1c@sha256:97a2bd2c9edd60e967a7ca253e1882e90cb75ef0cc25f27d26360c504a81a320
           resources:
             requests:
               cpu: 100m
               memory: 100Mi
             limits:
-              cpu: 3
-              memory: 10Gi
+              cpu: 500m
+              memory: 500Mi
           env:
             - name: POD_NAME
               valueFrom:
@@ -6742,8 +6766,6 @@ spec:
       # Our webhook should gracefully terminate by lame ducking first, set this to a sufficiently
       # high value that we respect whatever value it has configured for the lame duck grace period.
       terminationGracePeriodSeconds: 300
-      nodeSelector:
-        loader-nodetype: master
 ---
 apiVersion: v1
 kind: Service
