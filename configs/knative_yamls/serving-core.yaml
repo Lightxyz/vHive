@@ -4747,7 +4747,7 @@ metadata:
 spec:
   # This is the Go import path for the binary that is containerized
   # and substituted here.
-  image: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:7ee6adb86dddafbec9291654526f2183bc6b0cab72046c8d1db8347994658208
+  image: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:00b6ee9d4942ff603cacb0b90dd722e4f03e7b8b4e597d6d8b0ac5b2a07d68ff
 
 ---
 # Copyright 2018 The Knative Authors
@@ -5144,7 +5144,7 @@ metadata:
 data:
   # This is the Go import path for the binary that is containerized
   # and substituted here.
-  queue-sidecar-image: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:7ee6adb86dddafbec9291654526f2183bc6b0cab72046c8d1db8347994658208
+  queue-sidecar-image: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:00b6ee9d4942ff603cacb0b90dd722e4f03e7b8b4e597d6d8b0ac5b2a07d68ff
   _example: |-
     ################################
     #                              #
@@ -6216,16 +6216,16 @@ spec:
         - name: activator
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/activator-ecd51ca5034883acbe737fde417a3d86@sha256:4ca03f0a6e8aa8e4026e26b89ed17e9431c8139cece44ae6724efd7dcebd0ba2
+          image: docker.io/lightxyz/activator-ecd51ca5034883acbe737fde417a3d86@sha256:c98b3eee5207fcbe7463608ebb8ef2bb6fd9278a0d6af77aab26cd4a243d65e9
           # The numbers are based on performance test results from
           # https://github.com/knative/serving/issues/1625#issuecomment-511930023
           resources:
             requests:
-              cpu: 300m
-              memory: 60Mi
+              cpu: 600m
+              memory: 120Mi
             limits:
-              cpu: 3000m
-              memory: 10Gi
+              cpu: 4000m
+              memory: 14Gi
           env:
             # Run Activator with GC collection when newly generated memory is 500%.
             - name: GOGC
@@ -6381,14 +6381,14 @@ spec:
         - name: autoscaler
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/autoscaler-12c0fa24db31956a7cfa673210e4fa13@sha256:955dfed04dea9bab37f5f07e5bf3efd58bd159665d42b9cea064754baa29dc10
+          image: docker.io/lightxyz/autoscaler-12c0fa24db31956a7cfa673210e4fa13@sha256:ab88e9d32ef611307b79592735925c28f6b098c5edb5aeaccb14e14a677ed592
           resources:
             requests:
-              cpu: 100m
-              memory: 100Mi
+              cpu: 500m
+              memory: 500Mi
             limits:
-              cpu: 3000m
-              memory: 10Gi
+              cpu: 5000m
+              memory: 16Gi
           env:
             - name: POD_NAME
               valueFrom:
@@ -6515,14 +6515,14 @@ spec:
         - name: controller
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/controller-f6fdb41c6acbc726e29a3104ff2ef720@sha256:1d0d3745923d1d63945375fd672e1d1e4bf5ed8fb288c7fa9dbe28f775fe262c
+          image: docker.io/lightxyz/controller-f6fdb41c6acbc726e29a3104ff2ef720@sha256:d7a09b9ed4562147a40aabc96b384d1f55ef458623542af585a6f19622715f8b
           resources:
             requests:
-              cpu: 100m
-              memory: 100Mi
+              cpu: 500m
+              memory: 500Mi
             limits:
-              cpu: 3000m
-              memory: 10Gi
+              cpu: 4000m
+              memory: 12Gi
           env:
             - name: POD_NAME
               valueFrom:
@@ -6701,7 +6701,7 @@ spec:
         - name: webhook
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/webhook-261c6506fca17bc41be50b3461f98f1c@sha256:97a2bd2c9edd60e967a7ca253e1882e90cb75ef0cc25f27d26360c504a81a320
+          image: docker.io/lightxyz/webhook-261c6506fca17bc41be50b3461f98f1c@sha256:1d67d76608afc2036d7470b8cf32497566096b08f1acb2f88d6a1860e1602e4e
           resources:
             requests:
               cpu: 100m
