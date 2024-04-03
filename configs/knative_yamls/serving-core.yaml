@@ -4747,7 +4747,7 @@ metadata:
 spec:
   # This is the Go import path for the binary that is containerized
   # and substituted here.
-  image: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:42811b9cfb5bef5450ba88ae541b39a4c1fbf7980c6d59bf3d214bd93cb14aec
+  image: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:c9567ea6b59af2da17d73f4a27f7a8300f889d173cfd560d96d39900944569e4
 
 ---
 # Copyright 2018 The Knative Authors
@@ -5144,7 +5144,7 @@ metadata:
 data:
   # This is the Go import path for the binary that is containerized
   # and substituted here.
-  queue-sidecar-image: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:42811b9cfb5bef5450ba88ae541b39a4c1fbf7980c6d59bf3d214bd93cb14aec
+  queue-sidecar-image: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:c9567ea6b59af2da17d73f4a27f7a8300f889d173cfd560d96d39900944569e4
   _example: |-
     ################################
     #                              #
@@ -6216,7 +6216,7 @@ spec:
         - name: activator
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/activator-ecd51ca5034883acbe737fde417a3d86@sha256:d8b1d643ea3da3bedc930d3086c6abf3a8f594302fafd53a6fccc267baa25432
+          image: docker.io/lightxyz/activator-ecd51ca5034883acbe737fde417a3d86@sha256:5e608c477141fcce35b27d95f782293a65e4ed8bd87a8b7d2590ea15255bf387
           # The numbers are based on performance test results from
           # https://github.com/knative/serving/issues/1625#issuecomment-511930023
           resources:
@@ -6381,7 +6381,7 @@ spec:
         - name: autoscaler
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/autoscaler-12c0fa24db31956a7cfa673210e4fa13@sha256:47ed1389003b85c20623f32eb1e97010c5e8fd7d51fa63b36fd050cde4cf33ac
+          image: docker.io/lightxyz/autoscaler-12c0fa24db31956a7cfa673210e4fa13@sha256:ff854833d1fcaed38617e36b036196893b4c2b7f7d9e363c1e6f2e3f7ef46bb4
           resources:
             requests:
               cpu: 100m
@@ -6515,7 +6515,7 @@ spec:
         - name: controller
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/controller-f6fdb41c6acbc726e29a3104ff2ef720@sha256:907b3d63da0bbbf4d9f41c7cc8a486583498115621d2d28a148a1e8a67745156
+          image: docker.io/lightxyz/controller-f6fdb41c6acbc726e29a3104ff2ef720@sha256:97057adee63dedc9b77a40b64625b47056a13abba7c76ea3fa802c18e7b72e43
           resources:
             requests:
               cpu: 100m
@@ -6701,7 +6701,7 @@ spec:
         - name: webhook
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/webhook-261c6506fca17bc41be50b3461f98f1c@sha256:076ad196844682ecada963ffbcd9e5b20153cc2e2c857b62c5eac85107d782d0
+          image: docker.io/lightxyz/webhook-261c6506fca17bc41be50b3461f98f1c@sha256:06c3c2592655dd5c3e85046b6cc51055862eabc4d53e0a4b00ea0b3de3853cfc
           resources:
             requests:
               cpu: 100m
