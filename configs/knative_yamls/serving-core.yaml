@@ -4747,7 +4747,7 @@ metadata:
 spec:
   # This is the Go import path for the binary that is containerized
   # and substituted here.
-  image: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:e9fdc18c9da8515b7a884ff395a8f4229019a66bad5829fd6e6472d1de06ebd8
+  image: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:5dfa530d685610118ba337630b979f93214f374f6f223ab482adf7042a407fcb
 
 ---
 # Copyright 2018 The Knative Authors
@@ -5144,7 +5144,7 @@ metadata:
 data:
   # This is the Go import path for the binary that is containerized
   # and substituted here.
-  queue-sidecar-image: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:e9fdc18c9da8515b7a884ff395a8f4229019a66bad5829fd6e6472d1de06ebd8
+  queue-sidecar-image: docker.io/lightxyz/queue-39be6f1d08a095bd076a71d288d295b6@sha256:5dfa530d685610118ba337630b979f93214f374f6f223ab482adf7042a407fcb
   _example: |-
     ################################
     #                              #
@@ -6216,7 +6216,7 @@ spec:
         - name: activator
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/activator-ecd51ca5034883acbe737fde417a3d86@sha256:82521369778e1bf3230750daedbbdbdf4d1bf5747eaa7060f9fb59022e289841
+          image: docker.io/lightxyz/activator-ecd51ca5034883acbe737fde417a3d86@sha256:3dad6b3850b2810b5e007b0bfe3ff9feaea91eaf3f50208fcd0383c5e0ed2fd6
           # The numbers are based on performance test results from
           # https://github.com/knative/serving/issues/1625#issuecomment-511930023
           resources:
@@ -6224,8 +6224,8 @@ spec:
               cpu: 300m
               memory: 60Mi
             limits:
-              cpu: 3000m
-              memory: 10Gi
+              cpu: 1000m
+              memory: 600Mi
           env:
             # Run Activator with GC collection when newly generated memory is 500%.
             - name: GOGC
@@ -6381,14 +6381,14 @@ spec:
         - name: autoscaler
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/autoscaler-12c0fa24db31956a7cfa673210e4fa13@sha256:c165d5a4c837e6e4d383c31b321f389e48c2c9b841fe62d815c3f3a293ee9fe0
+          image: docker.io/lightxyz/autoscaler-12c0fa24db31956a7cfa673210e4fa13@sha256:7f44afd06c76378d8247ad11fd35a7706fccceb0cb03ecef21c0f43e880811fa
           resources:
             requests:
               cpu: 100m
               memory: 100Mi
             limits:
-              cpu: 3000m
-              memory: 10Gi
+              cpu: 1000m
+              memory: 1000Mi
           env:
             - name: POD_NAME
               valueFrom:
@@ -6515,14 +6515,14 @@ spec:
         - name: controller
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/controller-f6fdb41c6acbc726e29a3104ff2ef720@sha256:d0039d532287dd299863bd650d50df43fe6253c17cb05574678782e5120ab543
+          image: docker.io/lightxyz/controller-f6fdb41c6acbc726e29a3104ff2ef720@sha256:81f6ed0edd1622daf990b4172d9d311e8e50d7efb2460566cb6b3072d0ecf30b
           resources:
             requests:
               cpu: 100m
               memory: 100Mi
             limits:
-              cpu: 3000m
-              memory: 10Gi
+              cpu: 1000m
+              memory: 1000Mi
           env:
             - name: POD_NAME
               valueFrom:
@@ -6701,14 +6701,14 @@ spec:
         - name: webhook
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: docker.io/lightxyz/webhook-261c6506fca17bc41be50b3461f98f1c@sha256:d9632416f7e4a12644d1a2f64510707ae9b7f011035a56f247afc57127149f6e
+          image: docker.io/lightxyz/webhook-261c6506fca17bc41be50b3461f98f1c@sha256:4b32bc6393dc6a77694913db9e51ad6c689f6da182ffaa6fe1325ca1b92dadac
           resources:
             requests:
               cpu: 100m
               memory: 100Mi
             limits:
-              cpu: 1500m
-              memory: 1500Mi
+              cpu: 500m
+              memory: 500Mi
           env:
             - name: POD_NAME
               valueFrom:
