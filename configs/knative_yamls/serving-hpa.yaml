@@ -55,8 +55,8 @@ spec:
               cpu: 30m
               memory: 40Mi
             limits:
-              cpu: 300m
-              memory: 400Mi
+              cpu: 1600m
+              memory: 2000Mi
           env:
             - name: SYSTEM_NAMESPACE
               valueFrom:
