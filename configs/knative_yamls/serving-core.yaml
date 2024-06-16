@@ -6292,6 +6292,16 @@ spec:
       # timeoutSeconds property to avoid servicing events disrupting
       # connections.
       terminationGracePeriodSeconds: 600
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: loader-nodetype
+                    operator: In
+                    values:
+                      - master
+                      - singlenode
 ---
 apiVersion: v1
 kind: Service
@@ -6368,14 +6378,15 @@ spec:
     spec:
       # To avoid node becoming SPOF, spread our replicas to different nodes.
       affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - podAffinityTerm:
-                labelSelector:
-                  matchLabels:
-                    app: autoscaler
-                topologyKey: kubernetes.io/hostname
-              weight: 100
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: loader-nodetype
+                    operator: In
+                    values:
+                      - master
+                      - singlenode
       serviceAccountName: controller
       containers:
         - name: autoscaler
@@ -6502,14 +6513,15 @@ spec:
     spec:
       # To avoid node becoming SPOF, spread our replicas to different nodes.
       affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - podAffinityTerm:
-                labelSelector:
-                  matchLabels:
-                    app: controller
-                topologyKey: kubernetes.io/hostname
-              weight: 100
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: loader-nodetype
+                    operator: In
+                    values:
+                      - master
+                      - singlenode
       serviceAccountName: controller
       containers:
         - name: controller
@@ -6688,14 +6700,15 @@ spec:
     spec:
       # To avoid node becoming SPOF, spread our replicas to different nodes.
       affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - podAffinityTerm:
-                labelSelector:
-                  matchLabels:
-                    app: webhook
-                topologyKey: kubernetes.io/hostname
-              weight: 100
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: loader-nodetype
+                    operator: In
+                    values:
+                      - master
+                      - singlenode
       serviceAccountName: controller
       containers:
         - name: webhook
